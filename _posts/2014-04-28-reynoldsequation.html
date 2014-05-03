@@ -1,0 +1,73 @@
+---
+layout: post
+title: Reynolds equation and elastostatic deformations
+tags: maths
+author: <a href="http://hvzengineering.nl">HvZ Engineering</a>
+scripts: mathjax
+---
+
+<p>
+Consider a spinning disk that hovers above a flat surface; see Figure [Figure needed].
+The distance between the surface and disk is very small. 
+Furthermore, to maintain a minimum height and to prevent the disc from touching the surface,
+it is attached in the center. The rest of the disc can move freely. 
+To create lubrication effects, a network of air-supply and extraction holes is present in the flat surface.
+Careful balancing of air supply and extraction ensures that the disc can hover very closely to the surface without any contact,
+even though the disc tends to bend downwards near the edges due to gravitational forces.
+</p>
+
+<p>
+The air circulation under the disc yields a thin film that acts as lubrication to the spinning disc (air bearing). 
+The pressure distribution in the thin film is mathematically described by <a href="http://en.wikipedia.org/wiki/Reynolds_equation">Reynolds equation</a>.
+The derivation of Reynolds equation from the Navier-Stokes equation can be found in text books on tribology, e.g., [citation needed].
+Due to the pressure distribution, forces act on the disc which subsequently yield deformations. 
+The mathematical description of these deformations are givenby the Navier-Cauchy (or elastostatic) equations. 
+The pressure forces on and, hence, deformations of the disc will change the gap between disc and surface, which result in a change of pressure. 
+We now have a coupled problem between pressure and gap height.
+</p>
+
+<h4>Pressure driven deformation of a disc</h4>
+<p>
+To present the coupled problem that describes the pressure distribution in and thickness of a thin film, we use Reynolds' equation as a starting point:
+``ρh' - ∇∙(αρh^3∇ p) + \tfrac{1}{2}∇∙(ρχh) - ρχ∙∇ h = s, ``
+where α=1/12υ, χ the velocity of the disc, h the gap height, ρ the fluid density, (∙)' the time derivative, and s a source term associated with air supply and extraction.
+The presented Reynolds equation neglected any velocity in gap-height direction.
+Further, observe that the Reynolds equation in non-linear in gap height, and recall that the gap-height essentially also depends on pressure. 
+To close our system we require another equation, notably, the elasto-static equations that relate stress to deformations:
+``div(σ)(p) = ρg``
+For a derivation on how to obtain displacements from the elasto-static equations see <a href="nutils.org/2014/03/06/orthotropic.html">orthotropic</a>
+Henceforth we shall only consider steady-state solutions.
+</p>
+
+<h4>Linearized Reynolds equation</h4>
+<p>
+To solve the non-linear steady Reynolds-equation we first linearize around an initial estimate `h_0, p_0` and substitute `h=h_0+w` and ` p=p_0+δp`.
+After tedious steps and reorganizing terms this leads to:
+``\begin{multline} 
+-\left( ∇(αρh_0^3)∙∇p + αρh_0^3 ∇^2p + ∇∙(3αρh_0^2w ∇p_0) \right) + \tfrac{1}{2}∇∙(ρχw) + ρχ∙∇w \\
+= s - \tfrac{1}{2}∇∙(ρχh_0) - ρχ∙∇ h_0\end{multline}``
+Note that, for compatibility reasons with the elasto-static equations, the linearized Reynolds equation solves for total pressure `p` and not its perturbation. 
+Note further that this is not the case for gap height, since the elasto-static equations solve for the displacement `w` as well.
+</p>
+
+<h4>Variational form in index notation</h4>
+<p>
+Reynolds:
+Multiplying by a test function `q`, integration over a domain `Ω⊂\mathbb{R}^2` and several integration-by-parts:
+``\begin{multline} 
+\int_Ω q_{,i} (αρh_0^3)_{,i} p + q(αρh_0^3)_{,ii} p + (qαρh_0^3)_{,i}p_{,i} + q_{,i}(3αρh_0^2w)_{,i} p + \\
++ q(3αρh_0^2w)_{,ii} p + (3qαρh_0^2w)_{,i}p_{,i}+ \tfrac{1}{2} q(ρχ_iw)_{,i} + qρχ_iw_{,i} + \\
+- \int_{∂Ω} qp(αρh_0^3)_{,i}n_i + q(αρh_0^3)p_{,i}n_i + qp_0(3αρh_0^2w)_{,i}n_i + 3qαρh_0^2w p_{0,i}n_i =\\ 
+=\int_Ω qs - \tfrac{1}{2} (ρχ_ih_0)_{,i} - qρχ_ih_{,i}
+\end{multline}``
+</p>
+<p>
+Elasto-static:
+Multiplying by a test function `v`, integration over a domain `Ω⊂\mathbb{R}^3` and several integration-by-parts:
+``\begin{multline}
+\int_Ω v_i σ_{ij,j} = \int_Ω v_i λu_{j,ij} + μ(u_{i,jj}+u_{j,ij}) = \\
+=\int_Ω v_{i,j} (λu_{j,i} + μ(u_{i,j}+u_{j,i}) + \int_{∂Ω} v_i(λu_{j,i} + μ(u_{i,j}+u_{j,i}))n_j = \int_Ω ρv_i g_i + \int_{∂Ω} p v_i n_i 
+\end{multline}``
+where λ and μ are the Lamé constants. Note that the displacement field `u∈\mathbb{R}^3` and that its third component equals the perturbation in gap height, i.e., `u_3=w`.
+</p>
+
