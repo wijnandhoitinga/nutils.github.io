@@ -1,0 +1,69 @@
+---
+layout: post
+title: Compressible Navier-Stokes equations
+tags: maths
+author: <a href="http://hvzengineering.nl">HvZ Engineering</a>
+scripts: mathjax
+---
+
+<p>
+The model equations associated with compressible flow are given by:
+``ρ'+(ρu_i)_{,i} = 0``
+``(ρu_j)' + (ρu_iu_j)_{,i} - P_{ij,i} = 0``
+``E' + (u_iE)_{,i} - (u_jP_{ij})_{,i} + q_{i,i} = 0``
+referring to the continuity, momentum and energy equation, respectively, where
+`P_{ij}` denotes the stress tensor and `E` the energy density:
+``P_{ij} = -nk_BTδ_{ij} - \tfrac{2}{3}μu_{k,k}δ_{ij} + μ(u_{i,j}+u_{j,i})``
+``E = \tfrac{3}{2}nk_BT+\tfrac{1}{2}ρu^2``
+The heat flux `q` is usually approximated by Fourier's law:
+``q=-k∇T``
+</p>
+
+
+<h4>The linearized continuity equation</h4>
+<p>
+Since `ρ` and `u` are dependent variables in the compressible case, the continuity equation becomes non linear.
+Therefore, we will apply a Newton linearization on (1).
+Expressing the density and velocity as a sum of approximate and disturbance, i.e., `ρ=\bar{ρ} + δρ` and `u=\bar{u}+δu`,
+we present the linearized continuity equation after substitution and neglecting higher-order terms as:
+``δρ' + (ρδu_i)_{,i} + (u_iδρ)_{,i} = -ρ' - (ρu_i)_{,i}``
+where, for author's convenience and reader's confusion, we have removed the bar referring to the approximate density and velocity.
+</p>
+
+<h4>The linearized momentum equation</h4>
+<p>
+To determine the linearized momentum equation we follow similar steps as was done for the continuity equation. 
+The linearized momentum equation is given by:
+``(ρδu_j+u_jδρ)' + (ρ(u_iδu_j+u_jδu_i)+u_iu_jρ)_{,i} - P_{ij,i} = -(ρu_j)' - (ρu_iu_j)_{,i}``
+Note that the stress tensor is linear in `u` and therefore does not need linearization. 
+Beware that the velocity in `P` is `\bar{u}+δu`.
+</p>
+
+<h4>The linearized energy equation</h4>
+<p>
+To linearize the energy equation we first linearize the energy density:
+`E = \bar{E} + δE`, where `\bar{E} = \tfrac{3}{2} nk_BT + \tfrac{1}{2}ρu^2` and `δE = \tfrac{3}{2}nk_BδT + ρu_kδu_k + \tfrac{1}{2}u^2δρ`
+Note that the velocity squared is given by `u^2=u_ku_k`. 
+Furthermore, we require the linearized stress tensor. 
+Since the stress tensor is linear it suffices to replace the approximate `\bar{(\cdot)}` and perturbation `δ(\cdot)` accordingly.
+The linearized energy equation is given by:
+``δE' + (u_iδE + Eδu_i)_{,i} - (u_jδP_{ij}+P_{ij}δu_j)_{,i} - (kδT_i)_{,i} = -E' - (u_iE-u_jP_{ij}-kT_{,i})_{,i}``
+</p>
+
+<h4>The Newton-linearized compressible Navier-Stokes equations</h4>
+<p>
+To summarize we can formulate the three linearized coupled equations that form the linearized Navier-Stokes equations for compressible flow:
+``δρ' + (ρδu_i + u_iδρ)_{,i} = -(ρ' + (ρu_i)_{,i})``
+``(ρδu_j+u_jδρ)' + (ρ(u_iδu_j+u_jδu_i)+u_iu_jρ - P_{ij})_{,i} = -( (ρu_j)' + (ρu_iu_j)_{,i} )``
+``δE' + (u_iδE + Eδu_i - u_jδP_{ij}-P_{ij}δu_j - kδT_i)_{,i} = -(E' + (u_iE-u_jP_{ij}-kT_{,i})_{,i})``
+Since ρ is the only variable that couples the continuity and momentum equation to the energy equation,
+the incompressible case (constant density) will decouple the system. This can be seen from the expression 
+for the energy density `E`. In the constant-density case, the
+flow is described by the continuity and momentum equation, and the temperature is given by the energy equation.
+</p>
+
+<h4>Variational form of the linearized system</h4>
+<p>
+
+</p>
+
